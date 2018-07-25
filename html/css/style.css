@@ -1,0 +1,154 @@
+html, body {
+    font: 14px Arial, sans-serif;
+}
+
+a {
+    color: #ddb7ff;
+}
+
+#messages {
+    overflow-x: hidden;
+    height: 400px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#help {
+    font: 10px Arial, sans-serif;
+}
+
+.sys-msg {
+    color: #F06600;
+    text-align: center;
+}
+
+.show-send-msg {
+    color: #4A4A4A;
+    text-align: right;
+}
+
+.show-receive-msg {
+    color: #199BA4;
+}
+
+.date-msg {
+    color: #F06600;
+    text-align: center;
+}
+
+#mask {
+    display: flex;
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    top: 0; 
+    bottom: 0;
+    background:rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+#input-name {
+    border-radius: 5px;
+}
+
+.panel-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/*chat-message-template*/
+.left-message-row {
+    display: flex;
+    flex-direction: row;
+}
+.right-message-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.left-message-content {
+    background: #BCC6D6;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top:4px;
+}
+.right-message-content {
+    background: #A6D4F2;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 4px;
+}
+.left-direction {
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-color: rgba(213, 242, 239, 0);
+    border-right-color: #BCC6D6;
+    border-width: 8px;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+.right-direction {
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-color: rgba(213, 242, 239, 0);
+    border-left-color: #A6D4F2;
+    border-width: 8px;
+    margin-right: -5px;
+    margin-top: -5px;
+}
+.avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 6px;
+    min-width: 50px;
+}
+
+.clear-margin-padding {
+    margin: 0px;
+    padding: 0px;
+}
+
+.avatar-img img {
+    width: 40px;
+    height: 40px;
+}
+.avatar-name {
+    margin-top: 4px;
+    font-size: 6px;
+    text-align: center;
+    max-width: 100px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+}
+/*chat-message-template*/
+
+/*选择头像*/
+.avatar-list li {
+    list-style: none;
+    float: left;
+}
+.avatar-img {
+    width: 30px;
+    height: 30px;
+    margin: 0px 0px 5px 5px;
+}
+

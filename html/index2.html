@@ -1,0 +1,90 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div id="enterDiv">
+		<select id="people">
+			<option>A</option>
+			<option>B</option>
+			<option>C</option>
+			<option>E</option>
+			<option>F</option>
+			<option>G</option>
+		</select>
+		<input type="text" id="roomID" />
+		<input type="button" value="进入房间" onclick="enterRoom()" />
+	</div>
+	<div id="chatDiv" style="display: none;">
+		<span id="peopleName"></span>发言：
+		<input type="text" id="msg" />
+		<input type="button" value="发送" onclick="sendMsg()" />
+		<input type="button" value="下线" onclick="closeWb()" />
+	</div>
+	<ul id="sessionDiv">
+	</ul>
+
+	<script type="text/javascript">
+		var wb = new WebSocket('ws://localhost:80/')
+		var people
+		var roomID
+		wb.onmessage = function(event) {
+			onMessage(event)
+		}
+
+		wb.onclose = function(event){
+			console.log("已下线")
+			$("#chatDiv").css("display", "none")
+			$("#enterDiv").css("display", "block")
+			$("#sessionDiv").html("")
+		}
+
+		function onMessage(event){
+			// console.log(event.data)
+			$("#sessionDiv").append("<li>"+event.data+"</li>")
+		}
+
+		function sendMsg(){
+			var msg = $('#msg').val()
+
+			var data = {
+				"message": msg,
+				"people": people,
+				"room": roomID
+			}
+
+			wb.send(JSON.stringify(data))
+			// console.log(JSON.stringify(data))
+		}
+		//js对函数名也有要求
+		function closeWb(){
+			// console.log("已点击下线")
+			var data = {
+				"message": "离开房间",
+				"people": people,
+				"room": roomID
+			}
+
+			wb.send(JSON.stringify(data))
+
+			wb.close() //关闭连接，下线
+		}
+
+		function enterRoom(){
+			people = $('#people').val()
+			roomID = $('#roomID').val()
+			var data = {
+				"message": "进入房间",
+				"people": people,
+				"room": roomID
+			}
+
+			wb.send(JSON.stringify(data))
+			$("#chatDiv").css("display", "block")
+			$("#enterDiv").css("display", "none")
+			$("#peopleName").html(people)
+		}
+	</script>
+</body>
+</html>
